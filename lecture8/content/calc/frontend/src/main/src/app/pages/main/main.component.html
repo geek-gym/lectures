@@ -1,0 +1,7 @@
+<span [hidden]="!error">Can't create calculator</span>
+<button (click)="createCalculator()">create calculator</button><br/>
+
+<div style="margin-top: 20px;">
+    <input [(ngModel)]="calcId" />
+    <button (click)="openCalculator(calcId)" [disabled]="!calcId">open calculator</button>
+</div>

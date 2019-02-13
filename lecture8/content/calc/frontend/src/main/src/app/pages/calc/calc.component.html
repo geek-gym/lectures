@@ -1,0 +1,7 @@
+<div>Calculator id: {{ id }}</div>
+<div class="calc-container">
+    <input [(ngModel)]="value" disabled class="calc-display" />
+    <div class="calc-item" *ngFor="let innerValue of values">
+        <app-button  [calcId]="id" [value]="innerValue" (valueChange)="setValue($event);"></app-button>
+    </div>
+</div>
