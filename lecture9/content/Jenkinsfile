@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build calculator') {
+            steps {
+                bat 'mvn -f .\\calc\\pom.xml clean package -DskipTests'
+            }
+        }
+        stage('Unit Tests') {
+            steps {
+                bat 'mvn -f .\\calc\\pom.xml test'
+            }
+        }
+        stage('Collect artifacts') {
+            steps {
+                archiveArtifacts 'calc/backend/target/*.jar'
+            }
+        }
+    }
+    post {
+        always {
+            junit 'calc/backend/target/surefire-reports/*.xml'
+        }
+    }
+}
